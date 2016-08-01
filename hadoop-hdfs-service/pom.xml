@@ -19,5 +19,6 @@
 			<artifactId>hadoop-hdfs-dao</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+	
 	</dependencies>
 </project>
