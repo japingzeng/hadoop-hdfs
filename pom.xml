@@ -15,6 +15,7 @@
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<jackson.version>2.5.0</jackson.version>
 		<hadoop.version>2.6.0</hadoop.version>
+		<tomcat-jdbc.version>7.0.52</tomcat-jdbc.version>
 	</properties>
 
 	<dependencyManagement>
@@ -106,7 +107,15 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>1.2.2</version>
 			</dependency>
-
+			
+			<!-- connection pool -->
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>${tomcat-jdbc.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			
 			<!-- mysql连接 -->
 			<dependency>
 				<groupId>mysql</groupId>
