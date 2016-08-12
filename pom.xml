@@ -107,7 +107,7 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>1.2.2</version>
 			</dependency>
-			
+
 			<!-- connection pool -->
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
@@ -115,7 +115,7 @@
 				<version>${tomcat-jdbc.version}</version>
 				<scope>runtime</scope>
 			</dependency>
-			
+
 			<!-- mysql连接 -->
 			<dependency>
 				<groupId>mysql</groupId>
@@ -186,7 +186,7 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.fasterxml.jackson.module</groupId>
 				<artifactId>jackson-module-jaxb-annotations</artifactId>
@@ -197,7 +197,7 @@
 				<artifactId>json-simple</artifactId>
 				<version>1.1.1</version>
 			</dependency>
-			
+
 			<!-- joda for jackson -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -361,6 +361,24 @@
 				<artifactId>hadoop-core</artifactId>
 				<version>1.2.1</version>
 			</dependency>
+
+			<!-- taobao-pamirs-schedule -->
+			<dependency>
+				<groupId>com.taobao.pamirs.schedule</groupId>
+				<artifactId>taobao-pamirs-schedule</artifactId>
+				<version>2.0.3.6</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-collections</artifactId>
+						<groupId>commons-collections</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- taobao-pamirs-schedule -->
 
 		</dependencies>
 	</dependencyManagement>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- namespace必须指向DAO接口 -->
+<mapper namespace="ex.random.hadoophdfs.repository.mybatis.TempTestDao">
+
+	<!-- 插入数据 -->
+	<insert id="save" parameterType="TempTest" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+		random_test(user_name,pass_word)
+		VALUES
+		(#{userName},#{passWord})
+	</insert>
+	
+</mapper>

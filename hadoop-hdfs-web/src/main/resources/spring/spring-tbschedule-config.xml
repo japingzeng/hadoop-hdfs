@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	default-autowire="byName">
+	
+	<!-- 调度服务器配置 -->
+	<bean id="scheduleConfigCenter" class="com.taobao.pamirs.schedule.ScheduleConfigCenterClientByDatabase">
+		<property name="dataBaseType" value="mysql"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="tableMap">
+			<map>
+				<entry key="pamirs_schedule_queue" value="PAMIRS_SCHEDULE_QUEUE"/>
+				<entry key="pamirs_schedule_server" value="PAMIRS_SCHEDULE_SERVER"/>
+				<entry key="pamirs_schedule_tasktype" value="PAMIRS_SCHEDULE_TASKTYPE"/>
+				<entry key="pamirs_schedule_tasktrun" value="PAMIRS_SCHEDULE_TASKTRUN"/>
+				<entry key="pamirs_schedule_server_his" value="PAMIRS_SCHEDULE_SERVER_HIS"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.TBScheduleManagerFactory"
+		init-method="init" p:scheduleConfigCenter-ref="scheduleConfigCenter"/>
+
+	<!-- session 统计 任务 -->
+	<bean id="synchTask" class="com.jd.jimi.score.service.task.schedule.SynchTask" init-method="init" >
+		<property name="scheduleManagerFactory" ref="scheduleManagerFactory"/>
+		<property name="interval"  value="${synchtask.interval}"/><!--定时器刷新任务间隔，默认30分钟-->
+		<property name="taskType" value="synchTask"/>
+		<property name="ownSign" value="BASE"/>
+	</bean>
+</beans>
