@@ -5,6 +5,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 	default-autowire="byName">
 	
+    <!-- 测试随机任务选择 -->
+    <bean id="randomSelectTask" class="ex.random.hadoophdfs.service.task.template.RandomTask"/>
+    
+    
+    
 	<!-- 调度服务器配置 -->
 	<bean id="scheduleConfigCenter" class="com.taobao.pamirs.schedule.ScheduleConfigCenterClientByDatabase">
 		<property name="dataBaseType" value="mysql"/>
@@ -23,11 +28,11 @@
 	<bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.TBScheduleManagerFactory"
 		init-method="init" p:scheduleConfigCenter-ref="scheduleConfigCenter"/>
 
-	<!-- session 统计 任务 -->
-	<bean id="synchTask" class="com.jd.jimi.score.service.task.schedule.SynchTask" init-method="init" >
+	<!-- 随机测试任务 -->
+	<bean id="randomTask" class="com.jd.jimi.score.service.task.schedule.SynchTask" init-method="init" >
+		<property name="selectTask" ref="randomSelectTask" />
 		<property name="scheduleManagerFactory" ref="scheduleManagerFactory"/>
-		<property name="interval"  value="${synchtask.interval}"/><!--定时器刷新任务间隔，默认30分钟-->
-		<property name="taskType" value="synchTask"/>
+		<property name="taskType" value="randomTask"/>
 		<property name="ownSign" value="BASE"/>
 	</bean>
 </beans>
