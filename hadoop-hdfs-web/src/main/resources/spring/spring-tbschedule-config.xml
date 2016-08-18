@@ -28,11 +28,12 @@
 	<bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.TBScheduleManagerFactory"
 		init-method="init" p:scheduleConfigCenter-ref="scheduleConfigCenter"/>
 
-	<!-- 随机测试任务 -->
+	<!-- 随机测试任务 
 	<bean id="randomTask" class="com.jd.jimi.score.service.task.schedule.SynchTask" init-method="init" >
 		<property name="selectTask" ref="randomSelectTask" />
 		<property name="scheduleManagerFactory" ref="scheduleManagerFactory"/>
 		<property name="taskType" value="randomTask"/>
 		<property name="ownSign" value="BASE"/>
 	</bean>
+	-->
 </beans>

@@ -1,0 +1,6 @@
+#set($stepFlag="test")
+<div id="content" class="main-content">
+    UserName: ${username}<br>
+	PassWord: ${password}<br>
+</div>
+

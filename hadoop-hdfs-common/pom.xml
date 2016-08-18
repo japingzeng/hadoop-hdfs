@@ -141,8 +141,8 @@
 			<artifactId>velocity</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>velocity</groupId>
-			<artifactId>velocity-dep</artifactId>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
 		</dependency>
 
 		<!-- File upload -->
