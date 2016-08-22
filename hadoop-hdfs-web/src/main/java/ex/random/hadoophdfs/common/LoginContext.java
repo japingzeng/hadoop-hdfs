@@ -1,7 +1,13 @@
 package ex.random.hadoophdfs.common;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class LoginContext {
 	private final static ThreadLocal<LoginContext> threadLocal = new ThreadLocal<LoginContext>();
+	
+	private HttpServletRequest request; //请求对象
+	private HttpServletResponse response; //相应对象
 	/**
 	 * 用户ID
 	 */
@@ -49,4 +55,21 @@ public class LoginContext {
 	public void setCreatedTime(long createdTime) {
 		this.createdTime = createdTime;
 	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+	
 }

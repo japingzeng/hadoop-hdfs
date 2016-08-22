@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- namespace必须指向DAO接口 -->
+<mapper namespace="ex.random.hadoophdfs.repository.mybatis.UserInfoDao">
+	<!-- 所有列 -->
+	<sql id="colum_list">
+		id,
+		user_name AS userName,
+		pass_word AS passWord,
+		level,
+		token,
+		created_time AS createdTime,
+		modified_time AS modified
+	</sql>
+
+	<sql id="set_clause">
+		<set>
+			<if test="userName != null">
+				user_name = #{userName}
+			</if>
+			<if test="passWord != null">
+				pass_word = #{passWord]
+			</if>
+			<if test="level != null">
+				level = #{level}
+			</if>
+			<if test="token != null">
+				token = #{token}
+			</if>
+			<if test="modifiedTime != null">
+				modified_time = #{modifiedTime}
+			</if>
+		</set>
+	</sql>
+
+	<sql id="where_clause">
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+			<if test="userName != null">
+				user_name = #{userName}
+			</if>
+		</where>
+	</sql>
+
+	<select id="search">
+		SELECT
+		<include refid="colum_list" />
+		FROM random_user_info
+		<include refid="where_clause" />
+	</select>
+
+	<select id="selectOne">
+		SELECT
+		<include refid="colum_list" />
+		FROM random_user_info
+		<include refid="where_clause" />
+	</select>
+
+
+	<!-- 插入数据 -->
+	<insert id="save" parameterType="TempTest" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO
+		random_user_info(user_name,pass_word,level,token,created_time,modified_time)
+		VALUES
+		(#{userName},#{passWord},#{level},#{token},#{createdTime},#{modifiedTime})
+	</insert>
+
+</mapper>
