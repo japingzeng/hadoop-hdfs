@@ -24,16 +24,18 @@ public class BaseEntity implements Serializable {
 		return createdTime;
 	}
 
-	public void setCreatedTime(Date createdTime) {
+	public BaseEntity setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
+		return this;
 	}
 
 	public Date getModifiedTime() {
 		return modifiedTime;
 	}
 
-	public void setModifiedTime(Date modifiedTime) {
+	public BaseEntity setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
+		return this;
 	}
 
 }

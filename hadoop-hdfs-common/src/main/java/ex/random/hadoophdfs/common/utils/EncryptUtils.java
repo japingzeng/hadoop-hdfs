@@ -2,6 +2,7 @@ package ex.random.hadoophdfs.common.utils;
 
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -44,6 +45,7 @@ public class EncryptUtils {
         byte[] encrypted1 = str.getBytes(DEFAULT_ENCODING);
         byte[] original = cipher.doFinal(encrypted1);
         String originalString = byte2hex(original);
+        logger.info("[***加密成功" + new Date() + "***]");
         return originalString;
 
     }
@@ -64,6 +66,7 @@ public class EncryptUtils {
 
         byte[] encrypted1 = hexToByte(str);
         byte[] original = cipher.doFinal(encrypted1);
+        logger.info("[***解密成功" + new Date() + "***]");
         return new String(original, DEFAULT_ENCODING);
     }
 	

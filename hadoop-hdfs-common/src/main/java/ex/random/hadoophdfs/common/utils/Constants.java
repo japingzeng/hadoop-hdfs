@@ -10,7 +10,7 @@ package ex.random.hadoophdfs.common.utils;
  */
 public class Constants {
 
-	public final static String SECURITY_KEY = "EDA3DEWRIO23849078H2324";
+	public final static String SECURITY_KEY = "EDA3DEWRIO23849078H2324HJFUEKAER";
 	public final static String PIN_COOKIE_KEY = "random_pin";
 	public final static String COOKIE_DOMAIN = "";
     

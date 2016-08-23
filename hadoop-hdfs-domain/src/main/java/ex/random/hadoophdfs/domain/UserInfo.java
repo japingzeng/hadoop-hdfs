@@ -18,32 +18,36 @@ public class UserInfo extends BaseEntity {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
+	public UserInfo setUserName(String userName) {
 		this.userName = userName;
+		return this;
 	}
 
 	public String getPassWord() {
 		return passWord;
 	}
 
-	public void setPassWord(String passWord) {
+	public UserInfo setPassWord(String passWord) {
 		this.passWord = passWord;
+		return this;
 	}
 
 	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(Integer level) {
+	public UserInfo setLevel(Integer level) {
 		this.level = level;
+		return this;
 	}
 
 	public String getToken() {
 		return token;
 	}
 
-	public void setToken(String token) {
+	public UserInfo setToken(String token) {
 		this.token = token;
+		return this;
 	}
 
 }

@@ -1,5 +1,6 @@
 package ex.random.hadoophdfs.controller;
 
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,43 +14,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
+import ex.random.hadoophdfs.common.utils.Constants;
+import ex.random.hadoophdfs.common.utils.EncryptUtils;
 import ex.random.hadoophdfs.domain.UserInfo;
 import ex.random.hadoophdfs.service.user.UserInfoService;
 
 @Controller
-public class LoginController {
-	private final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class RegisterController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(RegisterController.class);
 	@Resource
 	private UserInfoService userInfoService;
-	
-	@RequestMapping(value = "/login", method = {RequestMethod.POST})
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/register", method = {RequestMethod.POST})
+	public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		try {
 			String userName = request.getParameter("userName");
 			String passWord = request.getParameter("passWord");
-		
-			UserInfo query = new UserInfo();
-			if ( null != userName);
-			query.setUserName(userName);
-			UserInfo user = userInfoService.selectOne(query);
-			//密码应该是被加密的，取出user的passWord,进行解密
 			
-			String decodePassWord = "解密后的密码";
-			if (decodePassWord.equals(passWord)) {
-				//用户、密码校验成功，跳转到home页面，跳转前，以用户名+passWord+当前时间 加密生成token，并将此token更新到用户表中
-				
-				mv.setViewName("/home");
-				mv.addObject("user", user);
+			if (null == userName || null == passWord) {
+				logger.error("[***用户名或者密码为空***]");
+				return mv.addObject("msg", "[***用户名或者密码为空***]");
 			}
-			
+			//AES算法加密password
+			String encodePassWord = EncryptUtils.encryptByAES(passWord, Constants.SECURITY_KEY);
+			UserInfo user = new UserInfo();
+			user.setLevel(1).setUserName(userName).setPassWord(encodePassWord)
+			.setCreatedTime(new Date()).setModifiedTime(new Date());
+			//添加用户到用户表
+			userInfoService.save(user);
+			//注册成功后，转到登录页，进行登录
 			mv.setViewName("/login");
+				
 		} catch (Exception e) {
-			logger.error("[***login执行异常***]", e.getMessage());
+			logger.error("[***注册失败***]" + e.getMessage());
 		}
 		return mv;
 	}
-
+	
 	public UserInfoService getUserInfoService() {
 		return userInfoService;
 	}
