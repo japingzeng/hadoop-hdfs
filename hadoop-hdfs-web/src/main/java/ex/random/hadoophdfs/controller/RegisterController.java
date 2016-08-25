@@ -46,7 +46,7 @@ public class RegisterController {
 			//添加用户到用户表
 			userInfoService.save(user);
 			//注册成功后，转到登录页，进行登录
-			mv.setViewName("/login");
+			mv.setViewName("/random/login");
 				
 		} catch (Exception e) {
 			logger.error("[***注册失败***]" + e.getMessage());

@@ -1,4 +1,5 @@
 package dao;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -11,26 +12,30 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import ex.random.hadoophdfs.domain.TempTest;
+import ex.random.hadoophdfs.domain.UserInfo;
 import ex.random.hadoophdfs.repository.mybatis.TempTestDao;
+import ex.random.hadoophdfs.repository.mybatis.user.UserInfoDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:applicationContext.xml"})
-public class TempTestDaoTest {
+public class userInfoDaoTest {
+	
 	@Resource
-	private TempTestDao tempTestDao;
+	private UserInfoDao userInfoDao;
 	private static Logger logger = LoggerFactory.getLogger(TempTestDao.class);
 	@Test
 	public void testSave() {
 		try {
-			TempTest aTest = new TempTest();
-			aTest.setPassWord("hehehe");
-			aTest.setUserName("heiheihei");
-			tempTestDao.save(aTest);
+			UserInfo user = new UserInfo();
+			user.setCreatedTime(new Date());
+			user.setModifiedTime(new Date());
+			user.setUserName("test1111");
+			user.setPassWord("234874385787432423");
+			userInfoDao.save(user);
 			System.out.println("test1111111111111111111111111111");
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 	}
-	
 }

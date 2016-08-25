@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <!-- namespace必须指向DAO接口 -->
-<mapper namespace="ex.random.hadoophdfs.repository.mybatis.UserInfoDao">
+<mapper namespace="ex.random.hadoophdfs.repository.mybatis.user.UserInfoDao">
 	<!-- 所有列 -->
 	<sql id="colum_list">
 		id,
@@ -47,14 +46,14 @@
 		</where>
 	</sql>
 
-	<select id="search">
+	<select id="search" parameterType="UserInfo" resultType="UserInfo">
 		SELECT
 		<include refid="colum_list" />
 		FROM random_user_info
 		<include refid="where_clause" />
 	</select>
 
-	<select id="selectOne">
+	<select id="selectOne" parameterType="UserInfo" resultType="UserInfo">
 		SELECT
 		<include refid="colum_list" />
 		FROM random_user_info
@@ -63,8 +62,7 @@
 
 
 	<!-- 插入数据 -->
-	<insert id="save" parameterType="TempTest" useGeneratedKeys="true"
-		keyProperty="id">
+	<insert id="save" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 		random_user_info(user_name,pass_word,level,token,created_time,modified_time)
 		VALUES

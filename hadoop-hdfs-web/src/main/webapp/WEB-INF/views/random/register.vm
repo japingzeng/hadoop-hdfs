@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta content="text/html" charset="utf-8" http-equiv="content-type"/>
+<title>用户注册</title>
+<script type="text/javascript" src="resource/js/common/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="resource/js/common/bootstrap.min.js"></script>
+<link rel="stylesheet" href="resource/css/common/bootstrap.min.css" type="text/css"></link>
+
+<script type="text/javascript">
+	//添加用户
+	function register() {
+		var form = document.forms[0];
+		form.submit();
+	}
+	
+	function validateUserName() {
+		var pattern = /^[A-Za-z0-9][\S]*$/;
+		var str = document.forms["registerform"]["userName"].value;
+		if (pattern.test(str)) {
+			if (str.length <=20) {
+				return true;
+			} else {
+				alert("长度大于20")；
+				return false；
+			}
+		} else {
+			alert("无效的命名")；
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+<div class="container">
+<form name="registerform" action="/register" method="post">
+	<table>
+		<tr>
+			<td>用户名：</td>
+			<td>
+				<input type="text" name="userName">
+			</td>
+		</tr>
+		<tr>
+			<td>密	码：</td>
+			<td>
+				<input type="password" name="passWord">
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type="button"  value="提交" onclick="register()">
+			</td>
+		</tr>
+	</table>
+</form>
+<div>
+</body>
+</html>

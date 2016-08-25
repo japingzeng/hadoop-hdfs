@@ -21,15 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/", method={RequestMethod.GET,RequestMethod.POST})
 public class testController {
 	
-//	@RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
-//	public ModelAndView test() {
-//		ModelAndView mv = new ModelAndView("test");
-//		Map<String, Object> model = new HashMap<String, Object>();
-//		model.put("username", "japing");
-//		model.put("password", "password");
-//		//ModelMap modelMap
-//		return mv.addAllObjects(model);
-//	}
+	@RequestMapping(value = "addUser", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView test() {
+		ModelAndView mv = new ModelAndView("/random/register");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("username", "japing");
+		model.put("password", "password");
+		//ModelMap modelMap
+		return mv.addAllObjects(model);
+	}
 	
 	@RequestMapping(value = "demo", method = {RequestMethod.GET,RequestMethod.POST})
 	public String test2(ModelMap modelMap) {
