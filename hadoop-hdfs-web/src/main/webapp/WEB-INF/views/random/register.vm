@@ -37,7 +37,7 @@
 			<input class="submit" type="submit" value="提交"/>
 		</p>
 		<p>
-			<input id="reset" name="reset" type="button" value="重置" />
+			<input id="reset" type="button" onclick="formReset()" value="重置" />
 		</p>
 	</fieldset>	
 </form>
@@ -48,35 +48,9 @@
 <script type="text/javascript" src="resource/js/common/jquery.messages_zh.js"></script>
 <script type="text/javascript" src="resource/js/common/bootstrap.min.js"></script>
 <script type="text/javascript">
-	//添加用户
-	<!--
-	function register() {
-		var form = document.forms[0];
-		form.submit();
-	}
-	
-	function validateUserName() {
-		var pattern = /^[A-Za-z0-9][\S]*$/;
-		var str = document.forms["registerform"]["userName"].value;
-		if (pattern.test(str)) {
-			if (str.length <=20) {
-				return true;
-			} else {
-				alert("长度大于20")；
-				return false；
-			}
-		} else {
-			alert("无效的命名")；
-			return false;
-		}
-	}
-	-->
-	$.validator.setDefaults({
-    submitHandler: function() {
-      alert("提交事件!");
-    }
-	});
-	
+function formReset(){
+	document.getElementById("registerform").reset();
+}
 	$().ready(function(){
 		//自定义验证用户名方法
 		$.validator.addMethod("userNameCheck",function(value, element){
@@ -87,18 +61,20 @@
 		$("#registerform").validate({
 			rules: {
 				userName: {
-					required: true,
-				<!--			
-				userNameCheck: true,-->	
-					minlength: 6
+					required: true,		
+					userNameCheck: true,
+					minlength: 6,
+					maxlength: 20
 				},
 				passWord: {
 					required: true,
-					minlength: 6
+					minlength: 6,
+					maxlength: 20
 				},
 				confirm_passWord: {
 					required: true,
 					minlength: 6,
+					maxlength: 20,
 					equalTo: "#passWord"
 				}
 			},
@@ -106,15 +82,18 @@
 			messages: {
 				userName: {
 					required: "请输入用户名",
-					minlength: "请至少输入6位字符"
+					minlength: "请至少输入6位字符",
+					maxlength: "至多输入20位字符"	
 				},
 				passWord: {
 					required: "请输入密码",
-					minlength: "请至少输入6位密码"	
+					minlength: "请至少输入6位密码",
+					maxlength: "至多输入20位字符"
 				},
 				confirm_passWord: {
 					required: "请输入确认密码",
 					minlength: "密码长度不一致",
+					maxlength: "至多输入20位字符",
 					equalTo: "两次输入密码不一致"
 				}
 			}
